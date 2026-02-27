@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 30);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -22,16 +22,19 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-5'}`}>
-      <div className="max-w-6xl mx-auto px-6 flex justify-between items-center">
-        <a href="#hero" className="text-xl font-bold tracking-tighter hover:text-blue-600 transition-colors">
-          JD.
+    <nav className={`fixed w-full z-50 transition-all duration-500 border-b border-transparent ${
+      scrolled ? 'bg-white/90 backdrop-blur-lg shadow-sm py-4 border-gray-100' : 'bg-transparent py-7'
+    }`}>
+      <div className="content-container px-6 flex justify-between items-center">
+        <a href="#hero" className="text-2xl font-black tracking-tighter hover:text-blue-600 transition-colors flex items-center gap-1">
+          <span className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white text-base">A</span>
+          M.
         </a>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-10">
           {navLinks.map((link) => (
-            <a key={link.name} href={link.href} className="text-sm font-medium hover:text-blue-600 transition-colors">
+            <a key={link.name} href={link.href} className="text-[13px] font-bold uppercase tracking-widest text-gray-500 hover:text-blue-600 transition-colors">
               {link.name}
             </a>
           ))}
@@ -45,13 +48,13 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100 py-6 px-6 shadow-xl animate-in fade-in slide-in-from-top-4">
-          <div className="flex flex-col space-y-4">
+        <div className="md:hidden absolute top-full left-0 w-full bg-white border-b border-gray-100 py-10 px-6 shadow-xl animate-in fade-in slide-in-from-top-4">
+          <div className="flex flex-col space-y-6 text-center">
             {navLinks.map((link) => (
               <a 
                 key={link.name} 
                 href={link.href} 
-                className="text-lg font-medium py-2 hover:text-blue-600 transition-colors border-b border-gray-50 last:border-0"
+                className="text-xl font-bold hover:text-blue-600 transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}

@@ -2,24 +2,24 @@ import React from 'react';
 import { Briefcase, GraduationCap, Calendar } from 'lucide-react';
 
 const ExperienceItem = ({ role, company, period, description, isWork }: { role: string, company: string, period: string, description: string, isWork?: boolean }) => (
-  <div className="relative pl-12 pb-16 last:pb-0 group">
+  <div className="relative pl-16 pb-20 last:pb-0 group">
     {/* Timeline line */}
-    <div className="absolute left-[1.35rem] top-0 bottom-0 w-px bg-gray-100 group-last:bg-transparent"></div>
+    <div className="absolute left-[1.75rem] top-0 bottom-0 w-1 bg-gray-100 group-last:bg-transparent transition-colors group-hover:bg-blue-100"></div>
     {/* Icon */}
-    <div className="absolute left-0 top-0 w-11 h-11 bg-white border border-gray-100 shadow-sm flex items-center justify-center rounded-2xl z-10 text-blue-600 transition-all group-hover:bg-blue-600 group-hover:text-white group-hover:scale-110">
-      {isWork ? <Briefcase size={20} /> : <GraduationCap size={20} />}
+    <div className="absolute left-0 top-0 w-14 h-14 bg-white border border-gray-100 shadow-sm flex items-center justify-center rounded-2xl z-10 text-blue-600 transition-all group-hover:bg-blue-600 group-hover:text-white group-hover:scale-110">
+      {isWork ? <Briefcase size={24} /> : <GraduationCap size={24} />}
     </div>
     
-    <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm group-hover:shadow-md transition-shadow">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
-        <h3 className="text-xl font-bold tracking-tight text-gray-900 group-hover:text-blue-600 transition-colors">{role}</h3>
-        <div className="flex items-center text-sm font-medium text-gray-500 bg-gray-50 px-3 py-1 rounded-full">
+    <div className="bg-white p-10 md:p-12 rounded-[2.5rem] border border-gray-100 shadow-sm hover:shadow-2xl hover:shadow-gray-100 transition-all duration-500">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
+        <h3 className="text-2xl font-black tracking-tight text-gray-900 group-hover:text-blue-600 transition-colors">{role}</h3>
+        <div className="flex items-center text-xs font-black text-gray-400 bg-gray-50 px-5 py-2 rounded-full border border-gray-100">
           <Calendar size={14} className="mr-2" />
           {period}
         </div>
       </div>
-      <p className="text-lg font-semibold text-gray-700 mb-4">{company}</p>
-      <p className="text-gray-600 leading-relaxed text-base max-w-3xl">
+      <p className="text-xl font-bold text-gray-700 mb-6">{company}</p>
+      <p className="text-gray-500 leading-relaxed text-lg max-w-4xl font-medium">
         {description}
       </p>
     </div>
@@ -59,13 +59,11 @@ const Experience: React.FC = () => {
   ];
 
   return (
-    <section id="experience" className="py-24 bg-white">
-      <div className="max-w-4xl mx-auto px-6">
-        <div className="mb-20">
-          <h2 className="text-3xl font-bold tracking-tight mb-4 after:content-[''] after:block after:w-16 after:h-1 after:bg-blue-600 after:mt-2">
-            My Professional Journey
-          </h2>
-          <p className="text-gray-600 text-lg">
+    <section id="experience" className="py-32 bg-white overflow-hidden">
+      <div className="content-container px-6 max-w-5xl">
+        <div className="text-center mb-24">
+          <h2 className="section-title">Professional Path.</h2>
+          <p className="section-subtitle mx-auto">
             A chronological overview of my career and education, showcasing the skills and experience I've gained over the years.
           </p>
         </div>

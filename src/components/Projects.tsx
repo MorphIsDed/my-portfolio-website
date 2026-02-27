@@ -1,39 +1,39 @@
 import React from 'react';
-import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
+import { Github, ArrowUpRight } from 'lucide-react';
 
 const ProjectCard = ({ title, category, description, tags, link, github }: { title: string, category: string, description: string, tags: string[], link?: string, github?: string }) => (
-  <div className="group bg-white rounded-[2rem] border border-gray-100 overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-    <div className="relative aspect-video bg-gray-100 overflow-hidden">
-      <div className="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-      <div className="w-full h-full flex items-center justify-center text-gray-400 group-hover:scale-105 transition-transform duration-700">
-        <p className="text-sm font-medium">Project Preview</p>
+  <div className="group bg-white rounded-[3rem] border border-gray-100 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-blue-100 transition-all duration-700 hover:-translate-y-4">
+    <div className="relative aspect-[16/10] bg-gray-100 overflow-hidden">
+      <div className="absolute inset-0 bg-blue-600 opacity-0 group-hover:opacity-5 transition-opacity duration-700"></div>
+      <div className="w-full h-full flex items-center justify-center text-gray-300 font-black text-2xl uppercase tracking-tighter opacity-20 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700">
+        {title}
       </div>
-      <div className="absolute top-6 right-6 flex gap-2">
+      <div className="absolute top-8 right-8 flex gap-3">
         {github && (
-          <a href={github} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/90 backdrop-blur shadow-sm flex items-center justify-center rounded-full text-gray-900 hover:bg-blue-600 hover:text-white transition-all transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 duration-300">
-            <Github size={18} />
+          <a href={github} target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-white/95 backdrop-blur shadow-sm flex items-center justify-center rounded-2xl text-gray-900 hover:bg-blue-600 hover:text-white transition-all transform translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 duration-500">
+            <Github size={20} />
           </a>
         )}
         {link && (
-          <a href={link} target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/90 backdrop-blur shadow-sm flex items-center justify-center rounded-full text-gray-900 hover:bg-blue-600 hover:text-white transition-all transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 duration-300 delay-75">
-            <ExternalLink size={18} />
+          <a href={link} target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-white/95 backdrop-blur shadow-sm flex items-center justify-center rounded-2xl text-gray-900 hover:bg-blue-600 hover:text-white transition-all transform translate-y-6 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 duration-500 delay-100">
+            <ArrowUpRight size={20} />
           </a>
         )}
       </div>
     </div>
     
-    <div className="p-10">
-      <p className="text-xs font-bold text-blue-600 uppercase tracking-widest mb-3">{category}</p>
-      <div className="flex justify-between items-start mb-4 group/title">
-        <h3 className="text-2xl font-bold tracking-tight text-gray-900">{title}</h3>
-        <ArrowUpRight className="text-gray-300 group-hover/title:text-blue-600 transition-colors" size={24} />
+    <div className="p-10 md:p-12">
+      <div className="flex items-center gap-3 mb-6">
+        <span className="w-2 h-2 bg-blue-600 rounded-full"></span>
+        <p className="text-[11px] font-black text-blue-600 uppercase tracking-[0.2em]">{category}</p>
       </div>
-      <p className="text-gray-600 leading-relaxed mb-8 line-clamp-2">
+      <h3 className="text-3xl font-black tracking-tight text-gray-900 mb-6 group-hover:text-blue-600 transition-colors">{title}</h3>
+      <p className="text-gray-500 leading-relaxed text-lg mb-10 font-medium">
         {description}
       </p>
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-2.5">
         {tags.map(tag => (
-          <span key={tag} className="px-3 py-1 bg-gray-50 text-gray-600 text-[10px] font-bold uppercase tracking-wider rounded-lg border border-gray-100">
+          <span key={tag} className="px-4 py-1.5 bg-gray-50 text-gray-500 text-[11px] font-black uppercase tracking-widest rounded-lg border border-gray-100">
             {tag}
           </span>
         ))}
@@ -71,24 +71,22 @@ const Projects: React.FC = () => {
   ];
 
   return (
-    <section id="projects" className="py-24 bg-gray-50/50">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+    <section id="projects" className="py-32 bg-gray-50/50">
+      <div className="content-container px-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-10">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight mb-4 after:content-[''] after:block after:w-16 after:h-1 after:bg-blue-600 after:mt-2">
-              Featured Projects
-            </h2>
-            <p className="text-gray-600 max-w-xl text-lg">
-              A selection of my recent work, showcasing my skills in web development, design, and problem-solving across various industries.
+            <h2 className="section-title">Case Studies.</h2>
+            <p className="section-subtitle">
+              A selection of my recent work, showcasing my skills in web development, design, and problem-solving.
             </p>
           </div>
-          <a href="#" className="font-bold text-blue-600 hover:text-blue-700 transition-colors flex items-center gap-2 group">
-            View All Projects
-            <ArrowUpRight size={20} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+          <a href="#" className="font-black text-xs uppercase tracking-[0.2em] text-blue-600 hover:text-blue-700 transition-all flex items-center gap-3 group border-b-2 border-blue-100 pb-2 mb-2">
+            View All Work
+            <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </a>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-12">
           {projects.map((project, index) => (
             <ProjectCard key={index} {...project} />
           ))}
