@@ -2,11 +2,44 @@
 
 :root {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --bg-primary: #ffffff;
-  --bg-secondary: #fafafa;
-  --text-main: #111827;
+
+  /* Light theme (default) */
+  --bg-primary: #020617;
+  --bg-elevated: rgba(15, 23, 42, 0.75);
+  --bg-soft: rgba(15, 23, 42, 0.4);
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+
+  --accent-blue: #38bdf8;
+  --accent-pink: #fb7185;
+  --accent-purple: #a855f7;
+  --accent-red: #f97373;
+  --accent-neon: #22f7ff;
+
+  --border-subtle: rgba(148, 163, 184, 0.35);
+  --glass-highlight: rgba(248, 250, 252, 0.08);
+}
+
+/* Explicit light theme override */
+[data-theme='light'] {
+  --bg-primary: #f3f4f6;
+  --bg-elevated: rgba(255, 255, 255, 0.78);
+  --bg-soft: rgba(255, 255, 255, 0.52);
+  --text-main: #020617;
   --text-muted: #4b5563;
-  --accent: #2563eb;
+  --border-subtle: rgba(148, 163, 184, 0.4);
+  --glass-highlight: rgba(15, 23, 42, 0.06);
+}
+
+/* Dark theme */
+[data-theme='dark'] {
+  --bg-primary: #020617;
+  --bg-elevated: rgba(15, 23, 42, 0.82);
+  --bg-soft: rgba(15, 23, 42, 0.5);
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --border-subtle: rgba(148, 163, 184, 0.35);
+  --glass-highlight: rgba(248, 250, 252, 0.1);
 }
 
 @theme {
@@ -25,7 +58,10 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--bg-primary);
+  background: radial-gradient(circle at top, rgba(56, 189, 248, 0.16), transparent 55%),
+    radial-gradient(circle at bottom, rgba(244, 114, 182, 0.13), transparent 65%),
+    radial-gradient(circle at right, rgba(129, 140, 248, 0.11), transparent 55%),
+    var(--bg-primary);
   color: var(--text-main);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -33,7 +69,7 @@ body {
 
 /* Standardized Section Spacing */
 section {
-  padding: 8rem 1.5rem; /* Increased vertical padding */
+  padding: 8rem 1.5rem;
 }
 
 @media (max-width: 768px) {
@@ -63,6 +99,175 @@ section {
   margin-bottom: 4rem;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   line-height: 1.2;
+}
+
+/* Glassmorphism primitives */
+.glass-surface {
+  background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.9),
+      rgba(15, 23, 42, 0.7)
+    );
+  background-color: var(--bg-elevated);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow:
+    0 22px 45px rgba(15, 23, 42, 0.65),
+    0 0 0 1px rgba(15, 23, 42, 0.35);
+}
+
+[data-theme='light'] .glass-surface {
+  background: linear-gradient(
+      135deg,
+      rgba(248, 250, 252, 0.92),
+      rgba(241, 245, 249, 0.86)
+    );
+  box-shadow:
+    0 18px 40px rgba(148, 163, 184, 0.22),
+    0 0 0 1px rgba(148, 163, 184, 0.18);
+}
+
+.glass-chip {
+  background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.96),
+      rgba(15, 23, 42, 0.7)
+    );
+  background-color: var(--bg-soft);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+[data-theme='light'] .glass-chip {
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(248, 250, 252, 0.9)
+    );
+}
+
+.neon-ring {
+  box-shadow:
+    0 0 15px rgba(56, 189, 248, 0.65),
+    0 0 30px rgba(244, 114, 182, 0.55);
+}
+
+/* Text treatments inspired by reactbits.dev */
+.text-gradient {
+  background-image: linear-gradient(
+    120deg,
+    var(--accent-blue),
+    var(--accent-purple),
+    var(--accent-pink),
+    var(--accent-neon)
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-gradient-sheen {
+  position: relative;
+  display: inline-block;
+}
+
+.text-gradient-sheen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    120deg,
+    rgba(148, 163, 184, 0.1),
+    rgba(255, 255, 255, 0.8),
+    rgba(148, 163, 184, 0.1)
+  );
+  mix-blend-mode: screen;
+  transform: translateX(-120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hero-heading:hover .text-gradient-sheen::before {
+  animation: sheen 1200ms cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.text-glow {
+  text-shadow:
+    0 0 14px rgba(56, 189, 248, 0.4),
+    0 0 26px rgba(129, 140, 248, 0.45),
+    0 0 42px rgba(244, 114, 182, 0.35);
+}
+
+/* Entrance & micro animations */
+@keyframes fade-up-soft {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.98);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.section-fade {
+  animation: fade-up-soft 700ms cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+  opacity: 0;
+}
+
+.section-fade-delay-sm {
+  animation-delay: 80ms;
+}
+
+.section-fade-delay-md {
+  animation-delay: 160ms;
+}
+
+.section-fade-delay-lg {
+  animation-delay: 260ms;
+}
+
+@keyframes float-soft {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -6px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.float-soft {
+  animation: float-soft 6s ease-in-out infinite;
+}
+
+@keyframes sheen {
+  0% {
+    transform: translateX(-140%);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(140%);
+    opacity: 0;
+  }
+}
+
+/* Scroll hint */
+.scroll-indicator {
+  letter-spacing: 0.35em;
 }
